@@ -2,6 +2,8 @@ ARG IDF_IMAGE_TAG=
 
 FROM espressif/idf:${IDF_IMAGE_TAG} AS base
 
+ARG DEBIAN_FRONTEND=noninteractive
+
 RUN apt update \
     && apt-get install openjdk-17-jre -y
 

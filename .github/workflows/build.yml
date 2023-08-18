@@ -13,7 +13,7 @@ env:
   docker_repository: ${{github.repository}}
   docker_platforms: "linux/amd64"
   sonar_scanner_version: "5.0.1.3006"
-  should_update_docker: ${{github.event_name}} != 'pull_request'
+  should_update_docker: ${{github.event_name != 'pull_request'}}
 
 jobs:
   build:

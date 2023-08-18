@@ -55,7 +55,7 @@ jobs:
       id: build
       uses: docker/build-push-action@v4.1.1
       with:
-        context: /src
+        context: "{{defaultContext}}:src"
         platforms: linux/amd64
         tags: ${{steps.meta.outputs.tags}}
         labels: ${{ steps.meta.outputs.labels}}

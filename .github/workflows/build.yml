@@ -67,8 +67,8 @@ jobs:
         labels: ${{steps.meta.outputs.labels}}
         push: ${{env.should_update_docker}}
         build-args: |
-          ESP_IMAGE_TAG=${{matrix.idf_image_tag}}
-          SONAR_SCANNER_VERSION=${{env.sonar_scanner_version}}
+          "ESP_IMAGE_TAG=${{matrix.idf_image_tag}}"
+          "SONAR_SCANNER_VERSION=${{env.sonar_scanner_version}}"
 
   post_build:
     runs-on: ubuntu-latest

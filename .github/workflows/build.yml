@@ -81,11 +81,12 @@ jobs:
         fetch-depth: 0
 
     - name: SonarCloud Scan
-      uses: sonarsource/sonarcloud-github-action@master
+      uses: sonarsource/sonarcloud-github-action@v2.0.0
+      with:
+        args: -Dsonar.organization=${{secrets.SONARCLOUD_ORGANIZATION}}
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         SONAR_TOKEN: ${{secrets.SONARCLOUD_TOKEN}}
-        args: -Dsonar.organization=${{secrets.SONARCLOUD_ORGANIZATION}}
 
     - name: Update Docker Hub Description
       uses: peter-evans/dockerhub-description@v3

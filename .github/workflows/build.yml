@@ -46,8 +46,6 @@ jobs:
       uses: docker/metadata-action@v4
       with:
         images: ${{env.docker_repository}}
-        tags: |
-          type=ref,event=push
         labels: |
           maintainer=${{github.repository_owner}}
           org.opencontainers.image.description=ESP-IDF ${{matrix.idf_image_tag}} image with Sonar Cloud support

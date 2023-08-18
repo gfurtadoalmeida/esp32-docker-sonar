@@ -1,0 +1,93 @@
+name: build
+
+on:
+  push:
+    branches: [ "master" ]
+    paths:
+      - 'src/**'
+  pull_request:
+    branches: [ "master" ]
+  workflow_dispatch:
+
+env:
+  docker_repository: ${{github.repository}}
+  sonar_scanner_version: "5.0.1.3006"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: true
+      matrix:
+        idf_image_tag:
+          - v5.1
+          - v4.4.5
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Docker Login
+      uses: docker/login-action@v2.2.0
+      if: github.event_name != 'pull_request'
+      with:
+        username: ${{secrets.DOCKER_USERNAME}}
+        password: ${{secrets.DOCKER_TOKEN}}
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+      with:
+        buildkitd-flags: --debug
+
+    - name: Docker Meta
+      id: meta
+      uses: docker/metadata-action@v4
+      with:
+        images: ${{env.docker_repository}}
+        tags: |
+          type=ref,event=workflow_dispatch
+          type=ref,event=push
+        labels: |
+          maintainer=${{github.repository_owner}}
+          org.opencontainers.image.description=ESP-IDF ${{matrix.idf_image_tag}} image with Sonar Cloud support
+          org.opencontainers.image.vendor=${{github.repository_owner}}
+
+    - name: Build and Push Image
+      id: build
+      uses: docker/build-push-action@v4.1.1
+      with:
+        context: /src
+        platforms: linux/amd64
+        tags: ${{steps.meta.outputs.tags}}
+        labels: ${{ steps.meta.outputs.labels}}
+        push: ${{github.event_name != 'pull_request'}}
+        build-args: |
+          ESP_IMAGE_TAG=${{matrix.idf_image_tag}}
+          SONAR_SCANNER_VERSION=${{env.sonar_scanner_version}}
+
+  post_build:
+    runs-on: ubuntu-latest
+
+    needs: build
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: SonarCloud Scan
+      uses: sonarsource/sonarcloud-github-action@master
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        SONAR_TOKEN: ${{secrets.SONARCLOUD_TOKEN}}
+        args: |
+          -Dsonar.organization=${{secrets.SONARCLOUD_ORGANIZATION}}
+
+    - name: Update Docker Hub Description
+      uses: peter-evans/dockerhub-description@v3
+      with:
+        username: ${{secrets.DOCKER_USERNAME}}
+        password: ${{secrets.DOCKER_TOKEN}}
+        repository: ${{env.docker_repository}}

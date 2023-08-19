@@ -5,7 +5,8 @@ FROM espressif/idf:${IDF_IMAGE_TAG} AS base
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt update \
-    && apt-get install --no-install-recommends --yes openjdk-17-jre
+    && apt-get install --no-install-recommends --yes openjdk-17-jre \
+    && rm -rf /var/lib/apt/lists/*
 
 FROM base AS sonar_ready
 
@@ -17,8 +18,8 @@ RUN curl -sSLo /tmp/sonar-scanner.zip "https://binaries.sonarsource.com/Distribu
     && curl -sSLo /tmp/build-wrapper-linux-x86.zip "https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip" \
     && unzip -o /tmp/sonar-scanner.zip -d /usr/bin \
     && unzip -o /tmp/build-wrapper-linux-x86.zip -d /usr/bin \
-    && rm /tmp/sonar-scanner.zip \
-    && rm /tmp/build-wrapper-linux-x86.zip
+    && rm -rf /tmp/sonar-scanner.zip \
+    && rm -rf /tmp/build-wrapper-linux-x86.zip
 
 FROM sonar_ready
 

@@ -5,7 +5,7 @@ FROM espressif/idf:${IDF_IMAGE_TAG} AS base
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt update \
-    && apt-get install openjdk-17-jre -y
+    && apt-get install --no-install-recommends --yes openjdk-17-jre
 
 FROM base AS sonar_ready
 

@@ -61,7 +61,7 @@ jobs:
       with:
         context: "{{defaultContext}}:src"
         cache-from: type=gha
-        cache-to: type=gha,mode=max
+        cache-to: type=gha,mode=min
         platforms: ${{env.docker_platforms}}
         tags: ${{env.docker_repository}}:${{matrix.idf_image_tag}}
         labels: ${{steps.meta.outputs.labels}}

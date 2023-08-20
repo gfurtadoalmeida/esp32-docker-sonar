@@ -17,29 +17,30 @@ This image contains a copy of ESP-IDF and all the tools necessary to build ESP-I
   * [Sonar Cloud Scanner CLI](https://docs.sonarcloud.io/advanced-setup/ci-based-analysis/sonarscanner-cli/)
   * [Sonar Cloud C/C++ Build Wrapper](https://docs.sonarsource.com/sonarqube/latest/analyzing-source-code/languages/c-family/#using-build-wrapper)
 * Security:
-  * Run with non-root user
+  * Run with non-root user.
 
-## Environment Variables
+## Basic Usage
 
-### Mandatory
-
-* `SONAR_ORGANIZATION_NAME`: a Sonar Cloud organization name.
-* `SONAR_ORGANIZATION_TOKEN`: a Sonar Cloud organization token.
-
-### Optional
-
-* `RUN_SONAR`: if it should run Sonar Cloud analysis.
-  * `1`: run analysis (default).
-  * `0`: skip analysis.
-* `SONAR_WRAPPER_OUTPUT_DIR`: output path for the [Sonar Cloud Build Wrapper](https://docs.sonarsource.com/sonarqube/latest/analyzing-source-code/languages/c-family/#using-build-wrapper). Defaults to `build_wrapper_output`.
-
-## Example
+Build a project located in the current directory using `idf.py build` command:
 
 ```bash
 docker run --rm \
-           --env SONAR_ORGANIZATION_NAME=yourSonarOrganizationName \
-           --env SONAR_ORGANIZATION_TOKEN=yourSonarOrganizationToken \
+           --env SONARCLOUD_ORGANIZATION=yourSonarOrganizationName \
+           --env SONARCLOUD_TOKEN=yourSonarOrganizationToken \
            -v $PWD:/project \
            -w /project \
-           gfurtadoalmeida/esp32-docker-sonar:v5.1
+           gfurtadoalmeida/esp32-docker-sonar:v5.1 \
+           idf.py build
 ```
+
+## Documentation
+
+For more information about this image and the detailed usage instructions, please refer to the ESP-IDF Programming Guide page: [IDF Docker Image](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/tools/idf-docker-image.html).
+
+:warning: Your project must have a `sonar-project.properties` file.
+
+### Environment Variables
+
+* `SONARCLOUD_ORGANIZATION`: a Sonar Cloud organization name.
+* `SONARCLOUD_TOKEN`: a Sonar Cloud organization token. If empty code analysis will no be run.
+* `BUILD_WRAPPER_OUTPUT_DIR`: output path for the [Sonar Cloud Build Wrapper](https://docs.sonarsource.com/sonarqube/latest/analyzing-source-code/languages/c-family/#using-build-wrapper) (defaults to `build_wrapper_output` if not passed).

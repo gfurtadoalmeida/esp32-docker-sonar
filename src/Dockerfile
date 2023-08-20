@@ -4,8 +4,8 @@ FROM espressif/idf:${IDF_IMAGE_TAG} AS base
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN apt update \
-    && apt-get install --no-install-recommends --yes openjdk-17-jre \
+RUN apt-get -qq update \
+    && apt-get install -y -q --no-install-recommends openjdk-17-jre \
     && rm -rf /var/lib/apt/lists/*
 
 FROM base AS sonar_ready
@@ -23,16 +23,17 @@ RUN curl -sSLo /tmp/sonar-scanner.zip "https://binaries.sonarsource.com/Distribu
 
 FROM sonar_ready
 
-ENV RUN_SONAR="1"
-ENV SONAR_WRAPPER_OUTPUT_DIR="build_wrapper_output"
-ENV SONAR_ORGANIZATION_NAME=""
-ENV SONAR_ORGANIZATION_TOKEN=""
+ENV BUILD_WRAPPER_OUTPUT_DIR="build_wrapper_output"
+ENV SONARCLOUD_ORGANIZATION=""
+ENV SONARCLOUD_TOKEN=""
 
-COPY /scripts/build.sh /usr/bin
-
-RUN groupadd --gid 1988 builder \
+RUN mkdir /opt/sonar \
+    && groupadd --gid 1988 builder \
     && adduser --uid 1802 --gid 1988 --disabled-password --gecos "" idf
+
+COPY /scripts/entrypoint.sh /opt/sonar
 
 USER idf
 
-CMD ["/bin/bash", "build.sh"]
+ENTRYPOINT ["/opt/sonar/entrypoint.sh"]
+CMD ["/bin/bash"]

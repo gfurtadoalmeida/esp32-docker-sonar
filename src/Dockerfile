@@ -30,4 +30,9 @@ ENV SONAR_ORGANIZATION_TOKEN=""
 
 COPY /scripts/build.sh /usr/bin
 
+RUN groupadd --gid 1988 builder \
+    && adduser --uid 1802 --gid 1988 --disabled-password --gecos "" idf
+
+USER idf
+
 CMD ["/bin/bash", "build.sh"]

@@ -10,12 +10,14 @@ This image contains a copy of ESP-IDF and all the tools necessary to build ESP-I
 
 * Inherits from the [official ESP-IDF Docker image](https://hub.docker.com/r/espressif/idf).
 * Tags
-  * [v4.4.5](https://hub.docker.com/r/espressif/idf/tags?page=1&name=v4.4.5)
   * [v5.1](https://hub.docker.com/r/espressif/idf/tags?page=1&name=v5.1)
+  * [v4.4.5](https://hub.docker.com/r/espressif/idf/tags?page=1&name=v4.4.5)
 * Added software:
   * [Java SE Platform 17](https://openjdk.org/projects/jdk/17/)
   * [Sonar Cloud Scanner CLI](https://docs.sonarcloud.io/advanced-setup/ci-based-analysis/sonarscanner-cli/)
   * [Sonar Cloud C/C++ Build Wrapper](https://docs.sonarsource.com/sonarqube/latest/analyzing-source-code/languages/c-family/#using-build-wrapper)
+* Security:
+  * Run with non-root user
 
 ## Environment Variables
 

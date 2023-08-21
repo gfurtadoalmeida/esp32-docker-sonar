@@ -15,8 +15,6 @@ This image contains a copy of ESP-IDF and all the tools necessary to build ESP-I
 * Added software:
   * [Sonar Cloud Scanner CLI](https://docs.sonarcloud.io/advanced-setup/ci-based-analysis/sonarscanner-cli/)
   * [Sonar Cloud C/C++ Build Wrapper](https://docs.sonarsource.com/sonarqube/latest/analyzing-source-code/languages/c-family/#using-build-wrapper)
-* Security:
-  * Run with non-root user.
 
 ## Basic Usage
 

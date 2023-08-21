@@ -19,9 +19,7 @@ ENV BUILD_WRAPPER_OUTPUT_DIR="build_wrapper_output"
 ENV SONARCLOUD_ORGANIZATION=""
 ENV SONARCLOUD_TOKEN=""
 
-RUN mkdir /opt/sonar \
-    && groupadd --gid 1988 builder \
-    && adduser --uid 1802 --gid 1988 --disabled-password --gecos "" idf
+RUN mkdir /opt/sonar
 
 COPY /scripts/entrypoint.sh /opt/sonar
 

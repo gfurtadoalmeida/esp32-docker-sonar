@@ -55,9 +55,6 @@ jobs:
         username: ${{secrets.DOCKER_USERNAME}}
         password: ${{secrets.DOCKER_TOKEN}}
 
-    - name: Set Entrypoint Permission
-      run: chmod +x ${{github.workspace}}/src/scripts/entrypoint.sh
-
     - name: Build
       id: build
       uses: docker/build-push-action@v4.1.1

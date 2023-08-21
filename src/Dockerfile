@@ -25,8 +25,6 @@ RUN mkdir /opt/sonar \
 
 COPY /scripts/entrypoint.sh /opt/sonar
 
-RUN chmod +x /opt/sonar/entrypoint.sh
-
 USER idf
 
 ENTRYPOINT ["/opt/sonar/entrypoint.sh"]

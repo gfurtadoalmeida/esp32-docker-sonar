@@ -41,5 +41,5 @@ For more information about this image and the detailed usage instructions, pleas
 ### Environment Variables
 
 * `SONARCLOUD_ORGANIZATION`: a Sonar Cloud organization name.
-* `SONARCLOUD_TOKEN`: a Sonar Cloud organization token. If empty code analysis will no be run.
+* `SONARCLOUD_TOKEN`: a Sonar Cloud organization token. If empty code analysis will not be run.
 * `BUILD_WRAPPER_OUTPUT_DIR`: output path for the [Sonar Cloud Build Wrapper](https://docs.sonarsource.com/sonarqube/latest/analyzing-source-code/languages/c-family/#using-build-wrapper) (defaults to `build_wrapper_output` if not passed).

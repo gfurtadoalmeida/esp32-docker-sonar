@@ -55,7 +55,7 @@ jobs:
         username: ${{secrets.DOCKER_USERNAME}}
         password: ${{secrets.DOCKER_TOKEN}}
 
-    - name: Build and Push Image
+    - name: Build
       id: build
       uses: docker/build-push-action@v4.1.1
       with:
@@ -65,10 +65,26 @@ jobs:
         platforms: ${{env.docker_platforms}}
         tags: ${{env.docker_repository}}:${{matrix.idf_image_tag}}
         labels: ${{steps.meta.outputs.labels}}
-        push: ${{env.should_update_docker}}
         build-args: |
           IDF_IMAGE_TAG=${{matrix.idf_image_tag}}
           SONAR_SCANNER_VERSION=${{env.sonar_scanner_version}}
+
+    - name: Create Test Project Folder
+      run: mkdir ${{env.docker_repository}}/${{matrix.idf_image_tag}}
+
+    - name: Create Test Project
+      run: docker run --rm ${{env.docker_repository}}:${{matrix.idf_image_tag}} -v ${{github.workspace}}/${{matrix.idf_image_tag}}:/project -w /project idf.py create-project-from-example "espressif/esp-now=*:coin_cell_demo/bulb"
+
+    - name: Build Test Project
+      run: docker run --rm ${{env.docker_repository}}:${{matrix.idf_image_tag}} -v ${{github.workspace}}/${{matrix.idf_image_tag}}:/project -w /project idf.py build ./bulb
+
+    - name: Push
+      uses: docker/build-push-action@v4
+      with:
+        context: .
+        platforms: ${{env.docker_platforms}}
+        tags: ${{env.docker_repository}}:${{matrix.idf_image_tag}}
+        push: ${{env.should_update_docker}}
 
   post_build:
     runs-on: ubuntu-latest

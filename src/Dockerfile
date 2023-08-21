@@ -1,14 +1,6 @@
 ARG IDF_IMAGE_TAG=
 
-FROM espressif/idf:${IDF_IMAGE_TAG} AS base
-
-ARG DEBIAN_FRONTEND=noninteractive
-
-RUN apt-get -qq update \
-    && apt-get install -y -q --no-install-recommends openjdk-17-jre \
-    && rm -rf /var/lib/apt/lists/*
-
-FROM base AS sonar_ready
+FROM espressif/idf:${IDF_IMAGE_TAG} AS sonar_ready
 
 ARG SONAR_SCANNER_VERSION=
 

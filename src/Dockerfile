@@ -23,7 +23,5 @@ RUN mkdir /opt/sonar
 
 COPY /scripts/entrypoint.sh /opt/sonar
 
-USER idf
-
 ENTRYPOINT ["/opt/sonar/entrypoint.sh"]
 CMD ["/bin/bash"]

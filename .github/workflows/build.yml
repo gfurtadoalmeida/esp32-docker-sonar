@@ -82,7 +82,7 @@ jobs:
     - name: Push
       uses: docker/build-push-action@v4
       with:
-        context: .
+        context: "{{defaultContext}}:src"
         platforms: ${{env.docker_platforms}}
         tags: ${{env.docker_repository}}:${{matrix.idf_image_tag}}
         push: ${{env.should_update_docker}}

@@ -70,7 +70,7 @@ jobs:
           SONAR_SCANNER_VERSION=${{env.sonar_scanner_version}}
 
     - name: Create Test Project Folder
-      run: mkdir ${{env.docker_repository}}/${{matrix.idf_image_tag}}
+      run: mkdir ${{github.workspace}}/${{matrix.idf_image_tag}}
 
     - name: Create Test Project
       run: docker run --rm ${{env.docker_repository}}:${{matrix.idf_image_tag}} -v ${{github.workspace}}/${{matrix.idf_image_tag}}:/project -w /project idf.py create-project-from-example "espressif/esp-now=*:coin_cell_demo/bulb"

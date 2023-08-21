@@ -77,7 +77,7 @@ jobs:
       run: docker run --rm -v ${{github.workspace}}/${{matrix.idf_image_tag}}:/project -w /project ${{env.docker_repository}}:${{matrix.idf_image_tag}} idf.py create-project-from-example "espressif/esp-now=*:coin_cell_demo/bulb"
 
     - name: Build Test Project
-      run: docker run --rm -v ${{github.workspace}}/${{matrix.idf_image_tag}}:/project -w /project ${{env.docker_repository}}:${{matrix.idf_image_tag}} idf.py build ./bulb
+      run: docker run --rm -v ${{github.workspace}}/${{matrix.idf_image_tag}}:/project -w /project ${{env.docker_repository}}:${{matrix.idf_image_tag}} idf.py build -C ./bulb
 
     - name: Push
       uses: docker/build-push-action@v4

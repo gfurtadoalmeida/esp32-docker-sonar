@@ -83,9 +83,13 @@ jobs:
       uses: docker/build-push-action@v4
       with:
         context: "{{defaultContext}}:src"
+        push: ${{env.should_update_docker}}
         platforms: ${{env.docker_platforms}}
         tags: ${{env.docker_repository}}:${{matrix.idf_image_tag}}
-        push: ${{env.should_update_docker}}
+        labels: ${{steps.meta.outputs.labels}}
+        build-args: |
+          IDF_IMAGE_TAG=${{matrix.idf_image_tag}}
+          SONAR_SCANNER_VERSION=${{env.sonar_scanner_version}}
 
   post_build:
     runs-on: ubuntu-latest

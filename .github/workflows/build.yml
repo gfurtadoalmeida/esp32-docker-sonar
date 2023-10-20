@@ -58,8 +58,7 @@ jobs:
         password: ${{secrets.DOCKER_TOKEN}}
 
     - name: Build
-      id: build
-      uses: docker/build-push-action@v4.1.1
+      uses: docker/build-push-action@v5.0.0
       with:
         context: "{{defaultContext}}:src"
         cache-from: type=gha
@@ -82,10 +81,11 @@ jobs:
       run: docker run --rm -v ${{github.workspace}}/${{matrix.idf_image_tag}}:/project -w /project ${{env.docker_repository}}:${{matrix.idf_image_tag}} idf.py build -C ./bulb
 
     - name: Push
-      uses: docker/build-push-action@v4
+      uses: docker/build-push-action@v5.0.0
+      if: ${{env.should_update_docker}}
       with:
         context: "{{defaultContext}}:src"
-        push: ${{env.should_update_docker}}
+        push: true
         platforms: ${{env.docker_platforms}}
         tags: ${{env.docker_repository}}:${{matrix.idf_image_tag}}
         labels: ${{steps.meta.outputs.labels}}
@@ -104,7 +104,7 @@ jobs:
         fetch-depth: 0
 
     - name: SonarCloud Scan
-      uses: sonarsource/sonarcloud-github-action@v2.0.0
+      uses: sonarsource/sonarcloud-github-action@v2.0.2
       with:
         args: -Dsonar.organization=${{secrets.SONARCLOUD_ORGANIZATION}}
       env:

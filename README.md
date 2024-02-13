@@ -3,7 +3,7 @@
 ![GitHub Build Status](https://github.com/gfurtadoalmeida/esp32-docker-sonar/actions/workflows/release.yml/badge.svg) [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=esp32_docker_sonar&metric=bugs)](https://sonarcloud.io/summary/new_code?id=esp32_docker_sonar) [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=esp32_docker_sonar&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=esp32_docker_sonar) [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=esp32_docker_sonar&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=esp32_docker_sonar) [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=esp32_docker_sonar&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=esp32_docker_sonar) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=esp32_docker_sonar&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=esp32_docker_sonar)  
 Docker image for the [Espressif IoT Development Framework (ESP-IDF)](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/index.html), with [Sonar Cloud](https://www.sonarsource.com/products/sonarcloud/) **C/C++ code analysis support**. It is intended for building applications and libraries with specific versions of ESP-IDF, when doing automated builds.
 
-This image contains a copy of ESP-IDF and all the tools necessary to build **and analyse** ESP-IDF projects.
+This image contains a copy of ESP-IDF and all the tools necessary to build **and analyze** ESP-IDF projects.
 
 ## Characteristics
 

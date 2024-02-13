@@ -19,7 +19,7 @@ switch ($args[0]) {
             esp32-docker-sonar:$IdfImageTag `
             idf.py build
     }
-    'test-without-sonar' {
+    'test-no-sonar' {
         $IdfImageTag = $args[1]
         $ProjectPath = $args[2]
 
@@ -32,9 +32,9 @@ switch ($args[0]) {
             idf.py build
     }
     Default {
-        Write-Host 'Script arguments:'
-        Write-Host "`tbuild {imageTag} {sonarScannerVersion}"
-        Write-Host "`ttest {imageTag} {sonarScannerOrganization} {sonarScannerToken} {projectPath}"
-        Write-Host "`ttest-without-sonar {imageTag} {projectPath}"
+        Write-Host "Command not recognized. Valid commands:"
+        Write-Host "`t* build {imageTag} {sonarScannerVersion}: build the image"
+        Write-Host "`t* test {imageTag} {sonarScannerOrganization} {sonarScannerToken} {projectPath}: test the image with Sonar Cloud"
+        Write-Host "`t* test-no-sonar {imageTag} {projectPath}: test the image without Sonar Cloud"
     }
 }

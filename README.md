@@ -17,8 +17,8 @@ This image contains a copy of ESP-IDF and all the tools necessary to build **and
 
 ESP-IDF release:
 
-* [v5.1](https://hub.docker.com/r/gfurtadoalmeida/esp32-docker-sonar/tags?page=1&name=v5.1) ([official](https://hub.docker.com/r/espressif/idf/tags?page=1&name=v5.1))
-* [v4.4.5](https://hub.docker.com/r/gfurtadoalmeida/esp32-docker-sonar/tags?page=1&name=v4.4.5) ([official](https://hub.docker.com/r/espressif/idf/tags?page=1&name=v4.4.5))
+* [v5.3](https://hub.docker.com/r/gfurtadoalmeida/esp32-docker-sonar/tags?page=1&name=v5.3) ([official](https://hub.docker.com/r/espressif/idf/tags?page=1&name=v5.3))
+* [v4.4.8](https://hub.docker.com/r/gfurtadoalmeida/esp32-docker-sonar/tags?page=1&name=v4.4.8) ([official](https://hub.docker.com/r/espressif/idf/tags?page=1&name=v4.4.8))
 
 ## Basic Usage
 

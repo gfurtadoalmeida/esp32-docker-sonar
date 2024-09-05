@@ -18,8 +18,8 @@ jobs:
       fail-fast: true
       matrix:
         idf_image_tag:
-          - v5.1
-          - v4.4.5
+          - v5.3
+          - v4.4.8
 
     env:
       DOCKER_PLATFORM: "linux/amd64"
@@ -53,7 +53,7 @@ jobs:
         password: ${{secrets.DOCKER_TOKEN}}
 
     - name: Build
-      uses: docker/build-push-action@v5
+      uses: docker/build-push-action@v6
       with:
         context: "{{defaultContext}}:src"
         cache-from: type=gha
@@ -75,7 +75,7 @@ jobs:
       run: docker run --rm -v ${{github.workspace}}/${{matrix.idf_image_tag}}:/project -w /project ${{env.DOCKER_REPOSITORY}}:${{matrix.idf_image_tag}} idf.py build -C ./bulb
 
     - name: Push
-      uses: docker/build-push-action@v5
+      uses: docker/build-push-action@v6
       with:
         context: "{{defaultContext}}:src"
         push: true

@@ -57,7 +57,7 @@ To contribute to this project make sure to read our [CONTRIBUTING.md](/docs/CONT
 [esp-docker]: https://hub.docker.com/r/espressif/idf
 [esp-idf-site]: https://docs.espressif.com/projects/esp-idf/en/latest/esp32/index.html
 [git-bagdge-release]: https://github.com/gfurtadoalmeida/esp32-docker-sonar/actions/workflows/release.yml/badge.svg
-[git-release]: https://github.com/gfurtadoalmeida/esp32_docker_sonar/releases
+[git-release]: https://github.com/gfurtadoalmeida/esp32-docker-sonar/releases
 [sonar-badge-bugs]: https://sonarcloud.io/api/project_badges/measure?project=esp32_docker_sonar&metric=bugs
 [sonar-badge-quality]: https://sonarcloud.io/api/project_badges/measure?project=esp32_docker_sonar&metric=alert_status
 [sonar-badge-security]: https://sonarcloud.io/api/project_badges/measure?project=esp32_docker_sonar&metric=security_rating

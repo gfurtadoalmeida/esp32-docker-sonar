@@ -1,24 +1,25 @@
 # ESP-IDF Docker Image with Sonar Cloud
 
-![GitHub Build Status](https://github.com/gfurtadoalmeida/esp32-docker-sonar/actions/workflows/release.yml/badge.svg) [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=esp32_docker_sonar&metric=bugs)](https://sonarcloud.io/summary/new_code?id=esp32_docker_sonar) [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=esp32_docker_sonar&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=esp32_docker_sonar) [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=esp32_docker_sonar&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=esp32_docker_sonar) [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=esp32_docker_sonar&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=esp32_docker_sonar) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=esp32_docker_sonar&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=esp32_docker_sonar)  
-Docker image for the [Espressif IoT Development Framework (ESP-IDF)](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/index.html), with [Sonar Cloud](https://www.sonarsource.com/products/sonarcloud/) **C/C++ code analysis support**. It is intended for building applications and libraries with specific versions of ESP-IDF, when doing automated builds.
+[![GitHub Release Status][git-bagdge-release]][git-release] [![Bugs][sonar-badge-bugs]][sonar-home] [![Code Smells][sonar-badge-smells]][sonar-home] [![Security Rating][sonar-badge-security]][sonar-home] [![Quality Gate Status][sonar-badge-quality]][sonar-home]  
+
+Docker image for the [Espressif IoT Development Framework (ESP-IDF)][esp-idf-site], with [Sonar Cloud][sonar-site] **C/C++ code analysis support**. It is intended for building applications and libraries with specific versions of ESP-IDF, when doing automated builds.
 
 This image contains a copy of ESP-IDF and all the tools necessary to build **and analyze** ESP-IDF projects.
 
 ## Characteristics
 
-* Inherits from the [official ESP-IDF Docker image](https://hub.docker.com/r/espressif/idf).
+* Inherits from the [official ESP-IDF Docker image][esp-docker].
 * Has the same usage as the official image.
-* Added software:
-  * [Sonar Cloud Scanner CLI](https://docs.sonarcloud.io/advanced-setup/ci-based-analysis/sonarscanner-cli/)
-  * [Sonar Cloud C/C++ Build Wrapper](https://docs.sonarsource.com/sonarqube/latest/analyzing-source-code/languages/c-family/#using-build-wrapper)
+* Adds only two Sonar softwares:
+  * [Sonar Cloud Scanner CLI][sonar-doc-cli]
+  * [Sonar Cloud C/C++ Build Wrapper][sonar-doc-wrapper]
 
 ## Tags
 
 ESP-IDF release:
 
-* [v5.3](https://hub.docker.com/r/gfurtadoalmeida/esp32-docker-sonar/tags?page=1&name=v5.3) ([official](https://hub.docker.com/r/espressif/idf/tags?page=1&name=v5.3))
-* [v4.4.8](https://hub.docker.com/r/gfurtadoalmeida/esp32-docker-sonar/tags?page=1&name=v4.4.8) ([official](https://hub.docker.com/r/espressif/idf/tags?page=1&name=v4.4.8))
+* [v5.3](https://hub.docker.com/r/gfurtadoalmeida/esp32-docker-sonar/tags?page=1&name=v5.3)
+* [v4.4.8](https://hub.docker.com/r/gfurtadoalmeida/esp32-docker-sonar/tags?page=1&name=v4.4.8)
 
 ## Basic Usage
 
@@ -38,12 +39,27 @@ docker run --rm \
 
 ## Documentation
 
-For more information about this image and the detailed usage instructions, please refer to the ESP-IDF Programming Guide page: [IDF Docker Image](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/tools/idf-docker-image.html).
+For more information about this image and the detailed usage instructions, please refer to the ESP-IDF Programming Guide page: [IDF Docker Image][esp-doc-docker].
 
-:warning: Your project must have a [sonar-project.properties](https://docs.sonarcloud.io/advanced-setup/analysis-parameters/) file when running code analysis.
+:warning: Your project must have a [sonar-project.properties][sonar-doc-analysis] file when running code analysis.
 
 ### Environment Variables
 
 * `SONARCLOUD_ORGANIZATION`: a Sonar Cloud organization name.
 * `SONARCLOUD_TOKEN`: a Sonar Cloud organization token. If empty code analysis will not be run.
-* `BUILD_WRAPPER_OUTPUT_DIR`: output path for the [Sonar Cloud Build Wrapper](https://docs.sonarsource.com/sonarqube/latest/analyzing-source-code/languages/c-family/#using-build-wrapper) (defaults to `build_wrapper_output` if not passed).
+* `BUILD_WRAPPER_OUTPUT_DIR`: output path for the [Sonar Cloud Build Wrapper][sonar-doc-wrapper] (defaults to `build_wrapper_output` if not passed).
+
+[esp-doc-docker]: https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/tools/idf-docker-image.htm
+[esp-docker]: https://hub.docker.com/r/espressif/idf
+[esp-idf-site]: https://docs.espressif.com/projects/esp-idf/en/latest/esp32/index.html
+[git-bagdge-release]: https://github.com/gfurtadoalmeida/esp32-docker-sonar/actions/workflows/release.yml/badge.svg
+[git-release]: https://github.com/gfurtadoalmeida/esp32_docker_sonar/releases
+[sonar-badge-bugs]: https://sonarcloud.io/api/project_badges/measure?project=esp32_docker_sonar&metric=bugs
+[sonar-badge-quality]: https://sonarcloud.io/api/project_badges/measure?project=esp32_docker_sonar&metric=alert_status
+[sonar-badge-security]: https://sonarcloud.io/api/project_badges/measure?project=esp32_docker_sonar&metric=security_rating
+[sonar-badge-smells]: https://sonarcloud.io/api/project_badges/measure?project=esp32_docker_sonar&metric=code_smells
+[sonar-doc-cli]: https://docs.sonarcloud.io/advanced-setup/ci-based-analysis/sonarscanner-cli/
+[sonar-doc-wrapper]: https://docs.sonarsource.com/sonarqube/latest/analyzing-source-code/languages/c-family/#using-build-wrapper
+[sonar-doc-analysis]: https://docs.sonarcloud.io/advanced-setup/analysis-parameters/
+[sonar-home]: https://sonarcloud.io/project/overview?id=esp32_docker_sonar
+[sonar-site]: https://www.sonarsource.com/products/sonarcloud/

@@ -49,6 +49,10 @@ For more information about this image and the detailed usage instructions, pleas
 * `SONARCLOUD_TOKEN`: a Sonar Cloud organization token. If empty code analysis will not be run.
 * `BUILD_WRAPPER_OUTPUT_DIR`: output path for the [Sonar Cloud Build Wrapper][sonar-doc-wrapper] (defaults to `build_wrapper_output` if not passed).
 
+## Contributing
+
+To contribute to this project make sure to read our [CONTRIBUTING.md](/docs/CONTRIBUTING.md) file.
+
 [esp-doc-docker]: https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/tools/idf-docker-image.htm
 [esp-docker]: https://hub.docker.com/r/espressif/idf
 [esp-idf-site]: https://docs.espressif.com/projects/esp-idf/en/latest/esp32/index.html

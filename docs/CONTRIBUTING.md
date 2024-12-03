@@ -96,7 +96,7 @@ Enhancement suggestions are tracked as [GitHub issues][issues-page].
 
 * Branch from the head of the default branch.
 * Add the minimum necessary code for a functionality.
-* Maintain the [official ESP-IDF Docker image][esp-doc] call convention.
+* Maintain the [official ESP-IDF Docker image][esp-docker] call convention.
 
 ## Requirements
 
@@ -108,7 +108,7 @@ This guide is based on the **contributing.md**. [Make your own](https://contribu
 
 [docker-badge]: https://img.shields.io/badge/docker-2496ED?logo=docker&style=for-the-badge&logoColor=FFFFFF
 [docker-url]: https://www.docker.com/
-[esp-doc]: https://hub.docker.com/r/espressif/idf
+[esp-docker]: https://hub.docker.com/r/espressif/idf
 [issues-bug]: https://github.com/gfurtadoalmeida/esp32-docker-sonar/labels/bug
 [issues-page]: https://github.com/gfurtadoalmeida/esp32-docker-sonar/issues
 [issues-new]: https://github.com/gfurtadoalmeida/esp32-docker-sonar/issues/new/choose

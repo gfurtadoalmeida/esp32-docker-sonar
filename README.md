@@ -31,6 +31,7 @@ Omitting the environment variables will disable code analysis.
 docker run --rm \
            --env SONARCLOUD_ORGANIZATION=yourSonarCloudOrganizationName \
            --env SONARCLOUD_TOKEN=yourSonarCloudOrganizationToken \
+           --env SONARCLOUD_BRANCH=master \
            -v $PWD:/project \
            -w /project \
            gfurtadoalmeida/esp32-docker-sonar:v5.1 \
@@ -45,9 +46,10 @@ For more information about this image and the detailed usage instructions, pleas
 
 ### Environment Variables
 
-* `SONARCLOUD_ORGANIZATION`: a Sonar Cloud organization name.
-* `SONARCLOUD_TOKEN`: a Sonar Cloud organization token. If empty code analysis will not be run.
-* `BUILD_WRAPPER_OUTPUT_DIR`: output path for the [Sonar Cloud Build Wrapper][sonar-doc-wrapper] (defaults to `build_wrapper_output` if not passed).
+* **SONARCLOUD_BRANCH**: the branch name to set on `sonar.branch.name`.
+* **SONARCLOUD_ORGANIZATION**: the organization name to set on `sonar.organization`.
+* **SONARCLOUD_TOKEN**: the token to set on `sonar.token`. If empty code analysis will not be run.
+* **BUILD_WRAPPER_OUTPUT_DIR**: output path for the [Sonar Cloud Build Wrapper][sonar-doc-wrapper] (defaults to `build_wrapper_output` if not passed).
 
 ## Contributing
 

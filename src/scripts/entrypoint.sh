@@ -5,7 +5,7 @@ set -e
 
 if [ $2 == "build" ]
 then
-  if [ -z "$SONARCLOUD_ORGANIZATION" ]
+  if [ -z "$SONARCLOUD_TOKEN" ]
   then
     echo "info: building without Sonar Cloud analysis"
 
@@ -19,7 +19,8 @@ then
     then
       sonar-scanner --define sonar.host.url="https://sonarcloud.io" \
         --define sonar.organization=$SONARCLOUD_ORGANIZATION \
-        --define sonar.token=$SONARCLOUD_TOKEN
+        --define sonar.token=$SONARCLOUD_TOKEN \
+        --define sonar.branch.name=$SONARCLOUD_BRANCH
 
       if [ $? -eq 0 ]
       then

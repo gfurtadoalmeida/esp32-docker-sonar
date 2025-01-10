@@ -17,7 +17,8 @@ FROM sonar_ready
 
 ENV BUILD_WRAPPER_OUTPUT_DIR="build_wrapper_output" \
     SONARCLOUD_ORGANIZATION="" \
-    SONARCLOUD_TOKEN=""
+    SONARCLOUD_TOKEN="" \
+    SONARCLOUD_BRANCH=""
 
 RUN mkdir /opt/sonar
 

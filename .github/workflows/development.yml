@@ -50,10 +50,10 @@ jobs:
 
     - name: Test Scripts
       run: |
-        chmod +x /test/mocks/esp-idf/export.sh
-        chmod +x /test/mocks/esp-idf/idf_py.sh
-        chmod +x /test/mocks/sonar/build-wrapper-linux-x86-64.sh
-        chmod +x /test/mocks/sonar/sonar-scanner.sh
+        chmod +x ${{github.workspace}}/test/mocks/esp-idf/export.sh
+        chmod +x ${{github.workspace}}/test/mocks/esp-idf/idf_py.sh
+        chmod +x ${{github.workspace}}/test/mocks/sonar/build-wrapper-linux-x86-64.sh
+        chmod +x ${{github.workspace}}/test/mocks/sonar/sonar-scanner.sh
 
         docker run --rm -v '${{github.workspace}}:/code' bats/bats:latest /code/test --print-output-on-failure --show-output-of-passing-tests
 

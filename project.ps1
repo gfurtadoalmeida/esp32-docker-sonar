@@ -32,7 +32,7 @@ switch ($args[0]) {
             idf.py build
     }
     'test-script' {
-        &docker run --rm -it `
+        &docker run --rm `
             -v "$PSScriptRoot\:/code" `
             bats/bats:latest `
             /code/test --print-output-on-failure --show-output-of-passing-tests

@@ -49,7 +49,7 @@ jobs:
         password: ${{secrets.DOCKER_TOKEN}}
 
     - name: Test Scripts
-      run: docker run --rm -it -v '${{github.workspace}}:/code' bats/bats:latest /code/test --print-output-on-failure --show-output-of-passing-tests
+      run: docker run --rm -v '${{github.workspace}}:/code' bats/bats:latest /code/test --print-output-on-failure --show-output-of-passing-tests
 
     - name: Build
       uses: docker/build-push-action@v6

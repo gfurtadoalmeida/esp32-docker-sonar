@@ -29,9 +29,8 @@ Omitting the environment variables will disable code analysis.
 
 ```bash
 docker run --rm \
-           --env SONARCLOUD_ORGANIZATION=yourSonarCloudOrganizationName \
-           --env SONARCLOUD_TOKEN=yourSonarCloudOrganizationToken \
-           --env SONARCLOUD_BRANCH=master \
+           --env EDS_ORG=yourSonarCloudOrganizationName \
+           --env EDS_TOKEN=yourSonarCloudOrganizationToken \
            -v $PWD:/project \
            -w /project \
            gfurtadoalmeida/esp32-docker-sonar:v5.1 \
@@ -46,10 +45,18 @@ For more information about this image and the detailed usage instructions, pleas
 
 ### Environment Variables
 
-* **SONARCLOUD_BRANCH**: the branch name to set on `sonar.branch.name`.
-* **SONARCLOUD_ORGANIZATION**: the organization name to set on `sonar.organization`.
-* **SONARCLOUD_TOKEN**: the token to set on `sonar.token`. If empty code analysis will not be run.
+Minimum required to run the analysis:
+
+* **EDS_ORG**: the organization name to set on `sonar.organization`.
+* **EDS_TOKEN**: the token to set on `sonar.token`.
 * **BUILD_WRAPPER_OUTPUT_DIR**: output path for the [Sonar Cloud Build Wrapper][sonar-doc-wrapper] (defaults to `build_wrapper_output` if not passed).
+
+Optional:
+
+* **EDS_BRANCH**: the branch name to set on `sonar.branch.name`.
+* **EDS_PR_KEY**: the pull request key to set on `sonar.pullrequest.key`.
+* **EDS_PR_BRANCH**: the pull request branch name to set on `sonar.pullrequest.branch`.
+* **EDS_PR_BASE**: the pull request base branch name to set on `sonar.pullrequest.base`.
 
 ## Contributing
 

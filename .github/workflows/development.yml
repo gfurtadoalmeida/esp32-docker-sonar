@@ -48,6 +48,15 @@ jobs:
         username: ${{secrets.DOCKER_USERNAME}}
         password: ${{secrets.DOCKER_TOKEN}}
 
+    - name: Test Scripts
+      run: |
+        chmod +x ${{github.workspace}}/test/mocks/esp-idf/export.sh
+        chmod +x ${{github.workspace}}/test/mocks/esp-idf/idf_py.sh
+        chmod +x ${{github.workspace}}/test/mocks/sonar/build-wrapper-linux-x86-64
+        chmod +x ${{github.workspace}}/test/mocks/sonar/sonar-scanner
+
+        docker run --rm -v '${{github.workspace}}:/code' bats/bats:latest /code/test --print-output-on-failure --show-output-of-passing-tests
+
     - name: Build
       uses: docker/build-push-action@v6
       with:
@@ -61,12 +70,12 @@ jobs:
           IDF_IMAGE_TAG=${{matrix.idf_image_tag}}
           SONAR_SCANNER_VERSION=${{vars.SONAR_SCANNER_VERSION}}
 
-    - name: Create Test Project
+    - name: Create ESP32 Test Project
       run: |
         mkdir ${{github.workspace}}/${{matrix.idf_image_tag}}
         docker run --rm -v ${{github.workspace}}/${{matrix.idf_image_tag}}:/project -w /project ${{env.DOCKER_REPOSITORY}}:${{matrix.idf_image_tag}} idf.py create-project-from-example "espressif/esp-now=*:coin_cell_demo/bulb"
 
-    - name: Build Test Project
+    - name: Build ESP32 Test Project
       run: docker run --rm -v ${{github.workspace}}/${{matrix.idf_image_tag}}:/project -w /project ${{env.DOCKER_REPOSITORY}}:${{matrix.idf_image_tag}} idf.py build -C ./bulb
 
   sonar:

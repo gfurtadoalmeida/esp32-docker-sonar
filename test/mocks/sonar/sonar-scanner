@@ -1,0 +1,6 @@
+#!/bin/bash
+
+echo "Mock sonar-scanner called with arguments:"
+echo "$@"
+
+exit 0

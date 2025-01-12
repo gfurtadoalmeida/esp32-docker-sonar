@@ -5,7 +5,7 @@ switch ($args[0]) {
 
         &docker buildx build --build-arg IDF_IMAGE_TAG=$IdfImageTag --build-arg SONAR_SCANNER_VERSION=$SonarScannerVersion --tag esp32-docker-sonar:$IdfImageTag --no-cache ./src
     }
-    'test' {
+    'test-docker' {
         $IdfImageTag = $args[1]
         $SonarScannerOrganization = $args[2]
         $SonarScannerToken = $args[3]
@@ -19,7 +19,7 @@ switch ($args[0]) {
             esp32-docker-sonar:$IdfImageTag `
             idf.py build
     }
-    'test-no-sonar' {
+    'test-docker-no-sonar' {
         $IdfImageTag = $args[1]
         $ProjectPath = $args[2]
 
@@ -31,10 +31,17 @@ switch ($args[0]) {
             esp32-docker-sonar:$IdfImageTag `
             idf.py build
     }
+    'test-script' {
+        &docker run --rm -it `
+            -v "$PSScriptRoot\:/code" `
+            bats/bats:latest `
+            /code/test --print-output-on-failure --show-output-of-passing-tests
+    }
     Default {
         Write-Host "Command not recognized. Valid commands:"
         Write-Host "`t* build {imageTag} {sonarScannerVersion}: build the image"
-        Write-Host "`t* test {imageTag} {sonarScannerOrganization} {sonarScannerToken} {projectPath}: test the image with Sonar Cloud"
-        Write-Host "`t* test-no-sonar {imageTag} {projectPath}: test the image without Sonar Cloud"
+        Write-Host "`t* test-docker {imageTag} {sonarScannerOrganization} {sonarScannerToken} {projectPath}: test the image with Sonar Cloud"
+        Write-Host "`t* test-docker-no-sonar {imageTag} {projectPath}: test the image without Sonar Cloud"
+        Write-Host "`t* test-script: test the bash scripts used by the image"
     }
 }

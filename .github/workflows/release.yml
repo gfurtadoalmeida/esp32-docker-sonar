@@ -10,7 +10,6 @@ env:
 
 jobs:
   release:
-    environment: docker-hub
     runs-on: ubuntu-latest
 
     strategy:
@@ -77,6 +76,7 @@ jobs:
           SONAR_SCANNER_VERSION=${{vars.SONAR_SCANNER_VERSION}}
 
   publish:
+    environment: docker-hub
     runs-on: ubuntu-latest
     needs: [release]
     permissions:

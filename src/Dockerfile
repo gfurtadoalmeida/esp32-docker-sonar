@@ -15,10 +15,7 @@ RUN curl -sSLo /tmp/sonar-scanner.zip "https://binaries.sonarsource.com/Distribu
 
 FROM sonar_ready
 
-ENV BUILD_WRAPPER_OUTPUT_DIR="build_wrapper_output" \
-    SONARCLOUD_ORGANIZATION="" \
-    SONARCLOUD_TOKEN="" \
-    SONARCLOUD_BRANCH=""
+ENV BUILD_WRAPPER_OUTPUT_DIR="build_wrapper_output"
 
 RUN mkdir /opt/sonar
 

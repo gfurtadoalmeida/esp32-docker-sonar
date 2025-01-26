@@ -2,30 +2,30 @@
 
 [![GitHub Release Status][git-bagdge-release]][git-release] [![Bugs][sonar-badge-bugs]][sonar-home] [![Code Smells][sonar-badge-smells]][sonar-home] [![Security Rating][sonar-badge-security]][sonar-home] [![Quality Gate Status][sonar-badge-quality]][sonar-home]  
 
-Docker image for the [Espressif IoT Development Framework (ESP-IDF)][esp-idf-site], with [Sonar Cloud][sonar-site] **C/C++ code analysis support**. It is intended for building applications and libraries with specific versions of ESP-IDF, when doing automated builds.
+Docker image for the [Espressif IoT Development Framework (ESP-IDF)][esp-idf-site], with [Sonar Cloud][sonar-site] **C/C++ code analysis support**.  
+It is intended for building applications and libraries with specific versions of ESP-IDF, when doing automated builds.
 
-This image contains a copy of ESP-IDF and all the tools necessary to build **and analyze** ESP-IDF projects.
+This image contains a copy of ESP-IDF and all the tools necessary to **build and analyze** ESP-IDF projects.
 
 ## Characteristics
 
 * Inherits from the [official ESP-IDF Docker image][esp-docker].
 * Has the same usage as the official image.
-* Adds only two Sonar softwares:
+* Only adds two Sonar softwares:
   * [Sonar Cloud Scanner CLI][sonar-doc-cli]
   * [Sonar Cloud C/C++ Build Wrapper][sonar-doc-wrapper]
 
 ## Tags
 
-ESP-IDF release:
+Multiple tags of this image are maintained:
 
 * [v5.3](https://hub.docker.com/r/gfurtadoalmeida/esp32-docker-sonar/tags?page=1&name=v5.3)
+* [v5.4](https://hub.docker.com/r/gfurtadoalmeida/esp32-docker-sonar/tags?page=1&name=v5.4)
 * [v4.4.8](https://hub.docker.com/r/gfurtadoalmeida/esp32-docker-sonar/tags?page=1&name=v4.4.8)
 
 ## Basic Usage
 
-Build a project located in the current directory using `idf.py build` command.  
-Code will be analyzed, and results will be sent to Sonar Cloud, automatically.  
-Omitting the environment variables will disable code analysis.
+Build and analyze a project located in the current directory using `idf.py build` command.  
 
 ```bash
 docker run --rm \
@@ -33,15 +33,17 @@ docker run --rm \
            --env EDS_TOKEN=yourSonarCloudOrganizationToken \
            -v $PWD:/project \
            -w /project \
-           gfurtadoalmeida/esp32-docker-sonar:v5.1 \
+           gfurtadoalmeida/esp32-docker-sonar:v5.4 \
            idf.py build
 ```
 
+> [!WARNING]
+> Your project must have a [sonar-project.properties][sonar-doc-analysis] file when running code analysis.  
+> To run without code analysis just omit the environment variables.
+
 ## Documentation
 
-For more information about this image and the detailed usage instructions, please refer to the ESP-IDF Programming Guide page: [IDF Docker Image][esp-doc-docker].
-
-:warning: Your project must have a [sonar-project.properties][sonar-doc-analysis] file when running code analysis.
+For more information about this image and the detailed usage instructions, please refer to the ESP-IDF Programming  Guide page: [IDF Docker Image⁠][esp-doc-docker].
 
 ### Environment Variables
 
@@ -62,7 +64,7 @@ Optional:
 
 To contribute to this project make sure to read our [CONTRIBUTING.md](/docs/CONTRIBUTING.md) file.
 
-[esp-doc-docker]: https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/tools/idf-docker-image.htm
+[esp-doc-docker]: https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/tools/idf-docker-image.html
 [esp-docker]: https://hub.docker.com/r/espressif/idf
 [esp-idf-site]: https://docs.espressif.com/projects/esp-idf/en/latest/esp32/index.html
 [git-bagdge-release]: https://github.com/gfurtadoalmeida/esp32-docker-sonar/actions/workflows/release.yml/badge.svg

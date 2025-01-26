@@ -3,6 +3,7 @@ set -e
 
 . "$IDF_PATH/export.sh"
 
+# Only analyze if the command is "idf.py build".
 if [ "$2" == "build" ];  then
   if [[ -z "$EDS_ORG" || -z "$EDS_TOKEN" ]]; then
     echo "info: building without Sonar Cloud analysis"
@@ -14,7 +15,8 @@ if [ "$2" == "build" ];  then
     build-wrapper-linux-x86-64 --out-dir "$BUILD_WRAPPER_OUTPUT_DIR" "$@"
 
     if [ $? -eq 0 ]; then
-      cmd="sonar-scanner --define sonar.host.url=https://sonarcloud.io \
+      cmd="sonar-scanner \
+            --define sonar.host.url=https://sonarcloud.io \
             --define sonar.organization=$EDS_ORG \
             --define sonar.token=$EDS_TOKEN"
 

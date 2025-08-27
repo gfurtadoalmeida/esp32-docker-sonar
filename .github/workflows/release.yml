@@ -9,16 +9,30 @@ env:
   DOCKER_REPOSITORY: ${{github.repository}}
 
 jobs:
+  get_versions:
+    runs-on: ubuntu-latest
+
+    outputs:
+      versions: ${{steps.read_versions.outputs.versions}}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Read Versions
+        working-directory: src
+        id: read_versions
+        run: echo "versions=$(cat supported_versions.json)" >> $GITHUB_OUTPUT
+
   release:
     runs-on: ubuntu-latest
+
+    needs:
+      - get_versions
 
     strategy:
       fail-fast: true
       matrix:
-        idf_image_tag:
-          - v5.3
-          - v5.4
-          - v4.4.8
+        idf_image_tag: ${{fromJson(needs.get_versions.outputs.versions)}}
 
     env:
       DOCKER_PLATFORM: "linux/amd64"

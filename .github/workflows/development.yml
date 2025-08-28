@@ -93,7 +93,7 @@ jobs:
         docker run --rm -v ${{github.workspace}}/${{matrix.idf_image_tag}}:/project -w /project ${{env.DOCKER_REPOSITORY}}:${{matrix.idf_image_tag}} idf.py create-project-from-example "espressif/esp-now=*:get-started"
 
     - name: Build ESP32 Test Project
-      run: docker run --rm -v ${{github.workspace}}/${{matrix.idf_image_tag}}:/project -w /project ${{env.DOCKER_REPOSITORY}}:${{matrix.idf_image_tag}} idf.py build
+      run: docker run --rm -v ${{github.workspace}}/${{matrix.idf_image_tag}}:/project -w /project ${{env.DOCKER_REPOSITORY}}:${{matrix.idf_image_tag}} idf.py build -C ./get-started
 
   sonar:
     runs-on: ubuntu-latest

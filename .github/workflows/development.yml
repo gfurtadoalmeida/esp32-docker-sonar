@@ -30,7 +30,9 @@ jobs:
       - name: Read Versions
         working-directory: src
         id: read_versions
-        run: echo "versions=$(cat supported_versions.json)" >> $GITHUB_OUTPUT
+        run: |
+          versions=$(cat supported_versions.json | tr -d '\n')
+          echo "versions=$versions" >> "$GITHUB_OUTPUT"
 
   build:
     runs-on: ubuntu-latest

@@ -85,7 +85,6 @@ jobs:
         tags: ${{env.DOCKER_REPOSITORY}}:${{matrix.idf_image_tag}}
         build-args: |
           IDF_IMAGE_TAG=${{matrix.idf_image_tag}}
-          SONAR_SCANNER_VERSION=${{vars.SONAR_SCANNER_VERSION}}
 
     - name: Create ESP32 Test Project
       run: |

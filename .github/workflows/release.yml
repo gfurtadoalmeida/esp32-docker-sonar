@@ -77,7 +77,6 @@ jobs:
         labels: ${{steps.meta.outputs.labels}}
         build-args: |
           IDF_IMAGE_TAG=${{matrix.idf_image_tag}}
-          SONAR_SCANNER_VERSION=${{vars.SONAR_SCANNER_VERSION}}
 
     - name: Push
       uses: docker/build-push-action@v6
@@ -89,7 +88,6 @@ jobs:
         labels: ${{steps.meta.outputs.labels}}
         build-args: |
           IDF_IMAGE_TAG=${{matrix.idf_image_tag}}
-          SONAR_SCANNER_VERSION=${{vars.SONAR_SCANNER_VERSION}}
 
   publish:
     environment: docker-hub

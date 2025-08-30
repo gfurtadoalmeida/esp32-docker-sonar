@@ -104,5 +104,4 @@ jobs:
       with:
         args: -Dsonar.organization=${{secrets.SONARCLOUD_ORGANIZATION}}
       env:
-        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         SONAR_TOKEN: ${{secrets.SONARCLOUD_TOKEN}}

@@ -2,7 +2,7 @@ ARG IDF_IMAGE_TAG=
 
 FROM espressif/idf:${IDF_IMAGE_TAG} AS sonar_ready
 
-ARG SONAR_SCANNER_VERSION="7.2.0.5079"
+ARG SONAR_SCANNER_VERSION="8.1.0.6389"
 
 ENV PATH="$PATH:/usr/bin/sonar-scanner-$SONAR_SCANNER_VERSION-linux-x64/bin:/usr/bin/build-wrapper-linux-x86"
 

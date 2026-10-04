@@ -1,0 +1,6 @@
+# Files executed inside Linux containers must keep LF line
+# endings, even on Windows checkouts with core.autocrlf=true.
+*.sh text eol=lf
+*.bats text eol=lf
+Dockerfile text eol=lf
+test/mocks/sonar/* text eol=lf

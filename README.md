@@ -19,7 +19,6 @@ This image contains a copy of ESP-IDF and all the tools necessary to **build and
 
 Multiple tags of this image are maintained:
 
-* [v4.4.8](https://hub.docker.com/r/gfurtadoalmeida/esp32-docker-sonar/tags?page=1&name=v4.4.8)
 * [v5.4](https://hub.docker.com/r/gfurtadoalmeida/esp32-docker-sonar/tags?page=1&name=v5.4)
 * [v5.5](https://hub.docker.com/r/gfurtadoalmeida/esp32-docker-sonar/tags?page=1&name=v5.5)
 * [v6.0](https://hub.docker.com/r/gfurtadoalmeida/esp32-docker-sonar/tags?page=1&name=v6.0)
